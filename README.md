@@ -6,7 +6,7 @@ Rock beats Scissors
 Scissors beats Paper
 Paper beats Rock
 The game keeps track of the scores, including the number of wins for both the player and the computer, as well as the number of ties.
-Features: 
+# Features: 
 Rock, Paper, Scissors Gameplay: Choose from three options and play against the computer.
 Score Tracking: The game tracks the number of wins for the player, the computer, and the ties.
 Instructions: A button to show the game instructions.
