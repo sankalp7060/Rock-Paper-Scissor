@@ -16,3 +16,20 @@ The game keeps track of the scores, including the number of wins for both the pl
 # Requirements
 - Python 3.x
 - tkinter library (comes pre-installed with Python)
+
+# Installation
+- Clone this repository to your local machine:
+`git clone <repository_url>`
+- Navigate to the project folder:
+`cd rock-paper-scissors-game`
+- No additional installations are required, as tkinter is included with Python.
+# How to Run
+- Open a terminal or command prompt.
+- Navigate to the project folder.
+- Run the Python script:
+`python rock_paper_scissors.py`
+# Gameplay
+- Upon starting the game, the user can click on one of the buttons: Rock, Paper, or Scissors to make a choice.
+- The system will randomly pick one of the options and display the result: whether the player wins, loses, or ties.
+- The score will be updated, and the game will continue until the user exits or resets the game.
+- To view instructions, click the Instructions button.
