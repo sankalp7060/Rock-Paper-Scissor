@@ -12,3 +12,6 @@ The game keeps track of the scores, including the number of wins for both the pl
 - Instructions: A button to show the game instructions.
 - Reset Game: A button to reset the scores and start a new game.
 - Exit Confirmation: A prompt to confirm before exiting the game.
+# Requirements
+- Python 3.x
+- tkinter library (comes pre-installed with Python)
