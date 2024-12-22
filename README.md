@@ -4,7 +4,8 @@ This is a simple graphical user interface (GUI) implementation of the classic "R
 
 - Rock beats Scissors
 - Scissors beats Paper
-- Paper beats Rock <br>
+- Paper beats Rock
+
 The game keeps track of the scores, including the number of wins for both the player and the computer, as well as the number of ties.
 # Features: 
 - Rock, Paper, Scissors Gameplay:Choose from three options and play against the computer.
