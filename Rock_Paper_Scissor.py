@@ -1,89 +1,127 @@
 import tkinter as tk
+from tkinter import ttk, messagebox
 import random
-from tkinter import messagebox
+from PIL import Image, ImageTk  
 
-player_score = 0
-computer_score = 0
-ties = 0
+class RockPaperScissors:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Rock, Paper, Scissors Game")
+        self.root.geometry("600x500")
+        self.root.config(bg="#f0f0f0")
 
-def determine_winner(player_selection):
-    global player_score, computer_score, ties
-    
-    options = ['rock', 'paper', 'scissors']
-    computer_selection = random.choice(options)
-    
-    game_result = ""
+        self.player_score = 0
+        self.computer_score = 0
+        self.ties = 0
+        self.rounds = 0
 
-    if player_selection == computer_selection:
-        game_result = "It's a Tie!"
-        ties += 1
-    elif (player_selection == 'rock' and computer_selection == 'scissors') or \
-         (player_selection == 'paper' and computer_selection == 'rock') or \
-         (player_selection == 'scissors' and computer_selection == 'paper'):
-        game_result = "You Win!"
-        player_score += 1
-    else:
-        game_result = "Computer Wins!"
-        computer_score += 1
-    
-    result_label.config(text=f"Computer chose: {computer_selection}\n{game_result}")
-    score_label.config(text=f"Player Score: {player_score}  |  Computer Score: {computer_score}  |  Ties: {ties}")
+        self.options = ["rock", "paper", "scissors"]
 
-def reset_game():
-    global player_score, computer_score, ties
-    player_score = 0
-    computer_score = 0
-    ties = 0
-    
-    result_label.config(text="")
-    score_label.config(text="Player Score: 0  |  Computer Score: 0  |  Ties: 0")
+        # Load images using Pillow
+        self.images = {
+            "rock": ImageTk.PhotoImage(Image.open("C:/Web Development/rock.png").resize((50, 50))),
+            "paper": ImageTk.PhotoImage(Image.open("C:/Web Development/paper.png").resize((50, 50))),
+            "scissors": ImageTk.PhotoImage(Image.open("C:/Web Development/scissor.png").resize((50, 50)))
+        }
 
-def show_instructions():
-    instructions_text = (
-        "Welcome to Rock, Paper, Scissors!\n\n"
-        "Choose Rock, Paper, or Scissors to play.\n"
-        "The system will randomly select one, and the winner is determined as follows:\n"
-        "- Rock beats Scissors\n"
-        "- Scissors beats Paper\n"
-        "- Paper beats Rock\n\n"
-        "The game keeps track of your score and the computer's score."
-    )
-    messagebox.showinfo("Instructions", instructions_text)
+        self.create_widgets()
 
-def on_exit():
-    exit_confirmation = messagebox.askyesno("Exit Game", "Are you sure you want to exit?")
-    if exit_confirmation:
-        root.quit()
+    def create_widgets(self):
+        font_style = ("Arial", 14)
 
-root = tk.Tk()
-root.title("Rock, Paper, Scissors Game")
-root.geometry("500x400")
-root.config(bg="#f0f0f0")
+        # Buttons with icons
+        ttk.Button(
+            self.root,
+            text="Rock",
+            image=self.images["rock"],
+            compound=tk.LEFT,
+            command=lambda: self.play_round("rock")
+        ).pack(pady=10)
 
-font_style = ("Arial", 14)
+        ttk.Button(
+            self.root,
+            text="Paper",
+            image=self.images["paper"],
+            compound=tk.LEFT,
+            command=lambda: self.play_round("paper")
+        ).pack(pady=10)
 
-rock_button = tk.Button(root, text="Rock", width=20, height=2, font=font_style, command=lambda: determine_winner('rock'))
-rock_button.pack(pady=10)
+        ttk.Button(
+            self.root,
+            text="Scissors",
+            image=self.images["scissors"],
+            compound=tk.LEFT,
+            command=lambda: self.play_round("scissors")
+        ).pack(pady=10)
 
-paper_button = tk.Button(root, text="Paper", width=20, height=2, font=font_style, command=lambda: determine_winner('paper'))
-paper_button.pack(pady=10)
+        # Labels
+        self.result_label = ttk.Label(self.root, text="Make your move!", font=("Arial", 16))
+        self.result_label.pack(pady=20)
 
-scissors_button = tk.Button(root, text="Scissors", width=20, height=2, font=font_style, command=lambda: determine_winner('scissors'))
-scissors_button.pack(pady=10)
+        self.score_label = ttk.Label(self.root, text="Player: 0 | Computer: 0 | Ties: 0", font=font_style)
+        self.score_label.pack(pady=10)
 
-result_label = tk.Label(root, text="", font=("Arial", 16), bg="#f0f0f0")
-result_label.pack(pady=20)
+        self.round_label = ttk.Label(self.root, text="Rounds Played: 0", font=font_style)
+        self.round_label.pack(pady=10)
 
-score_label = tk.Label(root, text="Player Score: 0  |  Computer Score: 0  |  Ties: 0", font=("Arial", 12), bg="#f0f0f0")
-score_label.pack(pady=10)
+        # Reset button
+        ttk.Button(self.root, text="Reset Game", command=self.reset_game).pack(pady=10)
 
-reset_button = tk.Button(root, text="Reset Game", width=20, height=2, font=font_style, command=reset_game)
-reset_button.pack(pady=10)
+        # Instructions
+        ttk.Button(self.root, text="Instructions", command=self.show_instructions).pack(pady=10)
 
-instructions_button = tk.Button(root, text="Instructions", width=20, height=2, font=font_style, command=show_instructions)
-instructions_button.pack(pady=10)
+        # Exit button
+        ttk.Button(self.root, text="Exit", command=self.on_exit).pack(pady=10)
 
-exit_button = tk.Button(root, text="Exit", width=20, height=2, font=font_style, command=on_exit)
-exit_button.pack(pady=10)
+    def play_round(self, player_choice):
+        computer_choice = random.choice(self.options)
+        self.rounds += 1
 
-root.mainloop()
+        if player_choice == computer_choice:
+            self.result_label.config(text=f"It's a Tie! Both chose {player_choice}")
+            self.ties += 1
+        elif (player_choice == "rock" and computer_choice == "scissors") or \
+             (player_choice == "paper" and computer_choice == "rock") or \
+             (player_choice == "scissors" and computer_choice == "paper"):
+            self.result_label.config(text=f"You Win! {player_choice} beats {computer_choice}")
+            self.player_score += 1
+        else:
+            self.result_label.config(text=f"Computer Wins! {computer_choice} beats {player_choice}")
+            self.computer_score += 1
+
+        self.update_scores()
+
+    def update_scores(self):
+        self.score_label.config(text=f"Player: {self.player_score} | Computer: {self.computer_score} | Ties: {self.ties}")
+        self.round_label.config(text=f"Rounds Played: {self.rounds}")
+
+    def reset_game(self):
+        self.player_score = 0
+        self.computer_score = 0
+        self.ties = 0
+        self.rounds = 0
+
+        self.result_label.config(text="Make your move!")
+        self.update_scores()
+
+    def show_instructions(self):
+        instructions_text = (
+            "Welcome to Rock, Paper, Scissors!\n\n"
+            "Choose Rock, Paper, or Scissors to play.\n"
+            "The system will randomly select one, and the winner is determined as follows:\n"
+            "- Rock beats Scissors\n"
+            "- Scissors beats Paper\n"
+            "- Paper beats Rock\n\n"
+            "The game keeps track of your score and the computer's score."
+        )
+        messagebox.showinfo("Instructions", instructions_text)
+
+    def on_exit(self):
+        if messagebox.askyesno("Exit Game", "Are you sure you want to exit?"):
+            self.root.quit()
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = RockPaperScissors(root)
+    root.mainloop()
