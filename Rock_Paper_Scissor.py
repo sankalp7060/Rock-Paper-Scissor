@@ -136,11 +136,11 @@ def get_player_name():
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.withdraw()  # Hide the main window initially
-    player_name = get_player_name()  # Get the player name
-    if player_name:  # Proceed only if the player name is valid
-        root.deiconify()  # Show the main window
-        app = RockPaperScissors(root, player_name)  # Initialize the game
-        root.mainloop()  # Run the game loop
+    root.withdraw()  
+    player_name = get_player_name()  
+    if player_name:  
+        root.deiconify()  
+        app = RockPaperScissors(root, player_name)  
+        root.mainloop()  
     else:
-        root.quit()  # Exit the program if no valid name is entered
+        root.quit() 
