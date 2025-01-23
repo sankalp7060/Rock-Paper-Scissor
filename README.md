@@ -1,35 +1,40 @@
-# Rock-Paper-Scissor
-Description
-This is a simple graphical user interface (GUI) implementation of the classic "Rock, Paper, Scissors" game using Python's tkinter library. The game allows the user to choose between "Rock", "Paper", or "Scissors", and the system will randomly select one of these options. The winner is determined based on the following rules:
+# Rock, Paper, Scissors Game 🎮  
 
-- Rock beats Scissors
-- Scissors beats Paper
-- Paper beats Rock
+A fun and interactive **Rock, Paper, Scissors** game built using Python! This desktop application features a user-friendly interface, dynamic gameplay, and score tracking, making it a perfect choice for beginners and enthusiasts of GUI programming.
 
-The game keeps track of the scores, including the number of wins for both the player and the computer, as well as the number of ties.
-# Features: 
-- Rock, Paper, Scissors Gameplay:Choose from three options and play against the computer.
-- Score Tracking: The game tracks the number of wins for the player, the computer, and the ties.
-- Instructions: A button to show the game instructions.
-- Reset Game: A button to reset the scores and start a new game.
-- Exit Confirmation: A prompt to confirm before exiting the game.
-# Requirements
-- Python 3.x
-- tkinter library (comes pre-installed with Python)
+---
 
-# Installation
-- Clone this repository to your local machine:
-`git clone <repository_url>`
-- Navigate to the project folder:
-`cd rock-paper-scissors-game`
-- No additional installations are required, as tkinter is included with Python.
-# How to Run
-- Open a terminal or command prompt.
-- Navigate to the project folder.
-- Run the Python script:
-`python rock_paper_scissors.py`
-# Gameplay
-- Upon starting the game, the user can click on one of the buttons: Rock, Paper, or Scissors to make a choice.
-- The system will randomly pick one of the options and display the result: whether the player wins, loses, or ties.
-- The score will be updated, and the game will continue until the user exits or resets the game.
-- To view instructions, click the Instructions button.
+## Features ✨  
+- **Interactive Gameplay**:  
+  - Choose between **Rock**, **Paper**, or **Scissors** to play against the computer.  
+  - The computer randomly selects its move.  
+  - The game determines the winner based on traditional rules:
+    - Rock beats Scissors  
+    - Scissors beats Paper  
+    - Paper beats Rock  
+
+- **Score Tracking**:  
+  - Player and Computer scores.  
+  - Tracks the number of ties.  
+  - Displays total rounds played.  
+
+- **Dynamic Pop-Ups**:  
+  - **Instructions**: Learn how to play the game with easy-to-follow rules.  
+  - **Exit Confirmation**: Ensures accidental exits are avoided by asking for confirmation.  
+
+- **Reset Game**: Quickly reset all scores and start fresh anytime.  
+
+- **Stylish Buttons with Icons**: Rock, Paper, and Scissors options feature visually appealing icons for a better user experience.  
+
+---
+
+## Installation and Setup 🛠️  
+
+### Prerequisites  
+- Python 3.x installed on your system.  
+- Required libraries: `tkinter`, `Pillow`.  
+
+### Steps to Run the Game:  
+1. Clone the repository:  
+   ```bash  
+   git clone https://github.com/yourusername/rock-paper-scissors.git  
