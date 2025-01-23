@@ -1,14 +1,16 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, simpledialog
 import random
+import re
 from PIL import Image, ImageTk  
 
 class RockPaperScissors:
-    def __init__(self, root):
+    def __init__(self, root, player_name):
         self.root = root
+        self.player_name = player_name  
         self.root.title("Rock, Paper, Scissors Game")
         self.root.geometry("600x500")
-        self.root.config(bg="#f0f0f0")
+        self.root.config(bg="#1d1f21")
 
         self.player_score = 0
         self.computer_score = 0
@@ -27,6 +29,9 @@ class RockPaperScissors:
 
     def create_widgets(self):
         font_style = ("Arial", 14)
+        
+        self.welcome_label = ttk.Label(self.root, text=f"Welcome, {self.player_name}!", font=("Arial", 18))
+        self.welcome_label.pack(pady=20)
 
         ttk.Button(
             self.root,
@@ -114,8 +119,28 @@ class RockPaperScissors:
         if messagebox.askyesno("Exit Game", "Are you sure you want to exit?"):
             self.root.quit()
 
+def get_player_name():
+    player_name = simpledialog.askstring("Player Name", "Enter your name:")
+
+    if player_name is None:
+        messagebox.showinfo("Exit", "Exiting the game.")
+        root.quit()  # Exit the program
+        return None
+
+    if player_name and re.match("^[A-Za-z ]+$", player_name):
+        player_name = ' '.join([word.capitalize() for word in player_name.split()])
+        return player_name
+    else:
+        messagebox.showerror("Invalid Name", "Please enter a valid name using only letters and spaces.")
+        return None
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = RockPaperScissors(root)
-    root.mainloop()
+    root.withdraw()  # Hide the main window initially
+    player_name = get_player_name()  # Get the player name
+    if player_name:  # Proceed only if the player name is valid
+        root.deiconify()  # Show the main window
+        app = RockPaperScissors(root, player_name)  # Initialize the game
+        root.mainloop()  # Run the game loop
+    else:
+        root.quit()  # Exit the program if no valid name is entered
