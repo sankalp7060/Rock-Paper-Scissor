@@ -16,8 +16,7 @@ class RockPaperScissors:
         self.rounds = 0
 
         self.options = ["rock", "paper", "scissors"]
-
-        # Load images using Pillow
+        
         self.images = {
             "rock": ImageTk.PhotoImage(Image.open("C:/Web Development/rock.png").resize((50, 50))),
             "paper": ImageTk.PhotoImage(Image.open("C:/Web Development/paper.png").resize((50, 50))),
@@ -29,7 +28,6 @@ class RockPaperScissors:
     def create_widgets(self):
         font_style = ("Arial", 14)
 
-        # Buttons with icons
         ttk.Button(
             self.root,
             text="Rock",
@@ -54,7 +52,6 @@ class RockPaperScissors:
             command=lambda: self.play_round("scissors")
         ).pack(pady=10)
 
-        # Labels
         self.result_label = ttk.Label(self.root, text="Make your move!", font=("Arial", 16))
         self.result_label.pack(pady=20)
 
@@ -64,13 +61,10 @@ class RockPaperScissors:
         self.round_label = ttk.Label(self.root, text="Rounds Played: 0", font=font_style)
         self.round_label.pack(pady=10)
 
-        # Reset button
         ttk.Button(self.root, text="Reset Game", command=self.reset_game).pack(pady=10)
 
-        # Instructions
         ttk.Button(self.root, text="Instructions", command=self.show_instructions).pack(pady=10)
 
-        # Exit button
         ttk.Button(self.root, text="Exit", command=self.on_exit).pack(pady=10)
 
     def play_round(self, player_choice):
