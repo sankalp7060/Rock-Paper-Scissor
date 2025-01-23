@@ -54,9 +54,9 @@ A fun and interactive **Rock, Paper, Scissors** game built using Python! This de
 ## How to Play 🎲
 1. Open the game and choose one of the three options:
 
-- Rock
-- Paper
-- Scissors
+  - Rock
+  - Paper
+  - Scissors
 2. The computer will make a random choice.
 
 3. The game will determine the winner based on the rules.
